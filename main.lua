@@ -80,9 +80,9 @@ if game.PlaceId == 3851622790 then
 				}
 
 				OutsideRole:FireServer(OutsideRole_Data)
-				MakeRole:FireServer(RoleData)
+				MakeRole:FireServer(unpack(RoleData))
 			else
-				MakeRole:FireServer(RoleData)
+				MakeRole:FireServer(unpack(RoleData))
 			end
 		end	
 	end
@@ -108,61 +108,53 @@ if game.PlaceId == 3851622790 then
 		['Adults'] = {
 			['The Protector'] = {	
 				['Equip'] = function(usingSkin)
-					if usingSkin then
-						local args = {
-							[1] = 'Bat',
-							[2] = false,
-							[3] = usingSkin
-						}
+					local args = {
+						[1] = 'Bat',
+						[2] = false,
+						[3] = usingSkin
+					}
 
 
-						EquipRole('M', args)
-					end
+					EquipRole('M', args)
 				end
 			},
 
 			['The Medic'] = {
 				['Equip'] = function(usingSkin)
-					if usingSkin then
-						local args = {
-							[1] = 'MedKit',
-							[2] = false,
-							[3] = usingSkin
-						}
+					local args = {
+						[1] = 'MedKit',
+						[2] = false,
+						[3] = usingSkin
+					}
 
 
-						EquipRole('M', args)
-					end
+					EquipRole('M', args)
 				end
 			},
 
 			['The Officer'] = {
 				['Equip'] = function(usingSkin)
-					if usingSkin then
-						local args = {
-							[1] = 'Gun',
-							[2] = false,
-							[3] = usingSkin
-						}
+					local args = {
+						[1] = 'Gun',
+						[2] = false,
+						[3] = usingSkin
+					}
 
 
-						EquipRole('The Officer', args)
-					end
+					EquipRole('The Officer', args)
 				end
 			},
 
 			['The Swat'] = {
 				['Equip'] = function(usingSkin)
-					if usingSkin then
-						local args = {
-							[1] = 'SwatGun',
-							[2] = false,
-							[3] = usingSkin
-						}
+					local args = {
+						[1] = 'SwatGun',
+						[2] = false,
+						[3] = usingSkin
+					}
 
 
-						EquipRole('The Swat', args)
-					end
+					EquipRole('The Swat', args)
 				end
 			}
 		},
