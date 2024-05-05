@@ -90,7 +90,7 @@ if game.PlaceId == 3851622790 then
 
 
 	local Break_In_2_Lobby = GamesTab:AddSection('Break In 2 - Lobby')
-	local Roles = Break_In_2_Lobby:AddSubSection('Roles', {default = false})
+	local Roles2 = Break_In_2_Lobby:AddSubSection('Roles', {default = false})
 
 
 
@@ -172,17 +172,17 @@ if game.PlaceId == 3851622790 then
 
 
 
-	local Adults = Roles:AddDropdown('Adults', {'The Protector', 'The Medic', 'The Officer', 'The Swat'}, {default = 'The Protector'}, function(selected)
+	local Adults = Roles2:AddDropdown('Adults', {'The Protector', 'The Medic', 'The Officer', 'The Swat'}, {default = 'The Protector'}, function(selected)
 		RoleSelected = Roles['Adults'][selected]['Equip']
 	end)
 
 	
-	local UsingSkin = Roles:AddToggle('Using Skin', {flag = 'Toggle_Flag', default = false}, function(bool)
+	local UsingSkin = Roles2:AddToggle('Using Skin', {flag = 'Toggle_Flag', default = false}, function(bool)
 		IsUsingSkin = bool
 	end)
 
 
-	Roles:AddButton('Equip', function()
+	Roles2:AddButton('Equip', function()
 		RoleSelected(IsUsingSkin)
 	end)
 end
