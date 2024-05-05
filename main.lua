@@ -79,7 +79,7 @@ if game.PlaceId == 3851622790 then
 					[2] = RoleData[3]
 				}
 
-				OutsideRole:FireServer(OutsideRole_Data)
+				OutsideRole:FireServer(unpack(OutsideRole_Data))
 				MakeRole:FireServer(unpack(RoleData))
 			else
 				MakeRole:FireServer(unpack(RoleData))
