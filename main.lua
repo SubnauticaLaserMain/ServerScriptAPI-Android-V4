@@ -203,6 +203,9 @@ if game.PlaceId == 3851622790 then
 	local Adults = Roles2:AddDropdown('Adults', {'The Protector', 'The Medic', 'The Officer', 'The Swat'}, {default = 'The Protector'}, function(selected)
 		RoleSelected = Roles['Adults'][selected]['Equip']
 	end)
+	local Kids = Roles2:AddDropdown('Kids', {'The Stealthy', 'The Hungry', 'The Fighter'}, {default = 'The Stealthy'}, function(selected)
+		RoleSelected = Roles['Kids'][selected]['Equip']
+	end)
 
 	
 	local UsingSkin = Roles2:AddToggle('Using Skin', {flag = 'Toggle_Flag', default = false}, function(bool)
