@@ -89,8 +89,8 @@ if game.PlaceId == 3851622790 then
 
 
 
-	local Break_In_2_Lobby = GamesTab:AddSection('Break In 2 - Lobby')
-	local Roles2 = Break_In_2_Lobby:AddSubSection('Roles', {default = false})
+	local Break_In_Lobby = GamesTab:AddSection('Break In - Lobby')
+	local Roles2 = Break_In_Lobby:AddSubSection('Roles', {default = false})
 
 
 
@@ -216,6 +216,72 @@ if game.PlaceId == 3851622790 then
 	Roles2:AddButton('Equip', function()
 		RoleSelected(IsUsingSkin)
 	end)
+elseif game.PlaceId == 4620170611 then
+	local Events = ReplicatedStorage:WaitForChild('RemoteEvents')
+
+	local GiveTool = Events:WaitForChild('GiveTool')
+
+
+
+
+
+	local Break_In_Game = GamesTab:AddSection('Break In - In-Game')
+	
+
+	local Break_In_Game_ItemGiver = Break_In_Game:AddSubSection('Item Giver')
+	local Break_In_Game_Events = Break_In_Game:AddSubSection('Events')
+
+
+
+	Break_In_Game_ItemGiver:AddButton('Give Apple', function()
+		local args = {
+			[1] = 'Apple'
+		}
+
+		GiveTool:FireServer(unpack(args))
+	end)
+
+	Break_In_Game_ItemGiver:AddButton('Give Cookie', function()
+		local args = {
+			[1] = 'Cookie'
+		}
+
+		GiveTool:FireServer(unpack(args))
+	end)
+
+	Break_In_Game_ItemGiver:AddButton('Give BloxyCola', function()
+		local args = {
+			[1] = 'BloxyCola'
+		}
+
+		GiveTool:FireServer(unpack(args))
+	end)
+
+	Break_In_Game_ItemGiver:AddButton('Give Chips', function()
+		local args = {
+			[1] = 'Chips'
+		}
+
+		GiveTool:FireServer(unpack(args))
+	end)
+
+	Break_In_Game_ItemGiver:AddButton('Give Lollipop', function()
+		local args = {
+			[1] = 'Lollipop'
+		}
+
+		GiveTool:FireServer(unpack(args))
+	end)
+
+	Break_In_Game_ItemGiver:AddButton('Give Pizza', function()
+		local args = {
+			[1] = 'Pizza'
+		}
+
+		GiveTool:FireServer(unpack(args))
+	end)
+
+	
 end
 
 
