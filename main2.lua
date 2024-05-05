@@ -73,7 +73,7 @@ if game.PlaceId == 3851622790 then
 
 
 		if Role and RoleData then
-			if Role == 'The Swat' or Role == 'The Officer' then
+			if Role == 'The Swat' or Role == 'The Officer' or Role == 'The Fighter' then
 				local OutsideRole_Data = {
 					[1] = RoleData[1],
 					[2] = RoleData[3]
@@ -159,13 +159,52 @@ if game.PlaceId == 3851622790 then
 			}
 		},
 
-		['Kids'] = {}
+		['Kids'] = {
+			['The Stealthy'] = {
+				['Equip'] = function(usingSkin)
+					local args = {
+						[1] = 'TeddyBloxpin',
+						[2] = true,
+						[3] = usingSkin
+					}
+
+					EquipRole('M', args)
+				end
+			},
+
+			['The Hungry'] = {
+				['Equip'] = function(usingSkin)
+					local args = {
+						[1] = 'Chips',
+						[2] = true,
+						[3] = usingSkin
+					}
+
+					EquipRole('M', args)
+				end
+			},
+
+			['The Figther'] = {
+				['Equip'] = function(usingSkin)
+					local args = {
+						[1] = 'Sword',
+						[2] = true,
+						[3] = usingSkin
+					}
+
+					EquipRole('The Fighter', args)
+				end
+			},
+		}
 	}
 
 
 
 	local Adults = Roles2:AddDropdown('Adults', {'The Protector', 'The Medic', 'The Officer', 'The Swat'}, {default = 'The Protector'}, function(selected)
 		RoleSelected = Roles['Adults'][selected]['Equip']
+	end)
+	local Kids = Role2:AddDropdown('Kids', {'The Stealthy', 'The Hungry', 'The Fighter'}, {default = 'The Stealthy'}, function(selected)
+		RoleSelected = Roles['Kids'][selected]['Equip']
 	end)
 
 	
