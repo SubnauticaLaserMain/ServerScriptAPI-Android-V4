@@ -309,6 +309,8 @@ else
 	
 			GiveTool:FireServer(unpack(args))
 		end)
+
+		Break_In_Game_ItemGiver:AddButton(' ')
 	
 		Break_In_Game_ItemGiver:AddButton('Give Pizza', function()
 			local args = {
@@ -318,7 +320,33 @@ else
 			GiveTool:FireServer(unpack(args))
 		end)
 
-		Break_In_Game_ItemGiver:AddButton('Give Expired_BloxyCola', function()
+		Break_In_Game_ItemGiver:AddButton('Give Small Pizza', function()
+			local args = {
+				[1] = 'Pizza1'
+			}
+	
+			GiveTool:FireServer(unpack(args))
+		end)
+
+		Break_In_Game_ItemGiver:AddButton('Give Normal Pizza', function()
+			local args = {
+				[1] = 'Pizza2'
+			}
+	
+			GiveTool:FireServer(unpack(args))
+		end)
+
+		Break_In_Game_ItemGiver:AddButton('Give Big Pizza', function()
+			local args = {
+				[1] = 'Pizza3'
+			}
+	
+			GiveTool:FireServer(unpack(args))
+		end)
+
+		Break_In_Game_ItemGiver:AddButton(' ')
+
+		Break_In_Game_ItemGiver:AddButton('Give Expired BloxyCola', function()
 			local args = {
 				[1] = 'ExpiredBloxyCola'
 			}
@@ -332,6 +360,14 @@ else
 		Break_In_Game_ItemGiver:AddButton('Give Key', function()
 			local args = {
 				[1] = 'Key'
+			}
+
+			GiveTool:FireServer(unpack(args))
+		end)
+
+		Break_In_Game_ItemGiver:AddButton('Give CarKey', function()
+			local args = {
+				[1] = 'CarKey'
 			}
 
 			GiveTool:FireServer(unpack(args))
@@ -491,7 +527,7 @@ else
 		
 
 
-		local KillPlayer = Break_In_Game:AddSubSection('KillPlayer')
+		local KillPlayer = Break_In_Game:AddSubSection('Kill Player')
 
 
 
@@ -545,7 +581,7 @@ else
 		end)
 
 
-		KillPlayer:AddButton('KillAll', function()
+		KillPlayer:AddButton('Kill All', function()
 			for i, v in game:GetPlayers() do
 				DoEvent('Drown', v.Name)
 			end
