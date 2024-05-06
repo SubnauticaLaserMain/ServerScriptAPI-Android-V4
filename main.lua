@@ -355,6 +355,14 @@ else
 			GiveTool:FireServer(unpack(args))
 		end)
 
+		Break_In_Game_ItemGiver:AddButton('Give Poisonous Pizza', function()
+			local args = {
+				[1] = 'EpicPizza'
+			}
+			
+			GiveTool:FireServer(unpack(args))			
+		end)
+
 		Break_In_Game_ItemGiver:AddButton(' ')
 
 		Break_In_Game_ItemGiver:AddButton('Give Key', function()
@@ -437,6 +445,15 @@ else
 			BasementWeapon:FireServer(unpack(args))			
 		end)
 
+		Break_In_Game_ItemGiver:AddButton('Give Crowbar', function()
+			local args = {
+				[1] = true,
+				[2] = 'Crowbar'
+			}
+			
+			BasementWeapon:FireServer(unpack(args))			
+		end)
+
 		Break_In_Game_ItemGiver:AddButton('Give IceBreaker', function()
 			local args = {
 				[1] = true,
@@ -459,6 +476,14 @@ else
 		Break_In_Game_ItemGiver:AddButton('Give TeddyBear', function()
 			local args = {
 				[1] = 'TeddyBloxpin'
+			}
+
+			GiveTool:FireServer(unpack(args))
+		end)
+
+		Break_In_Game_ItemGiver:AddButton('Give Plank', function()
+			local args = {
+				[1] = 'Plank'
 			}
 
 			GiveTool:FireServer(unpack(args))
