@@ -635,7 +635,7 @@ else
 		end)
 	else
 		if game.PlaceId == 13864661000 then
-			--[[Break In (Story)]]
+			--[[Break In 2 (Story)]]
 			local RemoteEvents = ReplicatedStorage:WaitForChild('RemoteEvents')
 
 
@@ -658,94 +658,100 @@ else
 						MakeRole:FireServer(unpack(RoleData))
 					end
 				end	
+			end
 
 
-				local Roles = {
-					['Adults'] = {
-						['The Protector'] = {	
-							['Equip'] = function(usingSkin)
-								local args = {
-									[1] = 'Bat',
-									[2] = false,
-									[3] = usingSkin
-								}
-			
-			
-								EquipRole('M', args)
-							end
-						},
-			
-						['The Medic'] = {
-							['Equip'] = function(usingSkin)
-								local args = {
-									[1] = 'MedKit',
-									[2] = false,
-									[3] = usingSkin
-								}
-			
-			
-								EquipRole('M', args)
-							end
-						},
 
-						['The Hacker'] = {
-							['Equip'] = function(usingSkin)
-								local args = {
-									[1] = 'Phone',
-									[2] = false,
-									[3] = usingSkin
-								}
-			
-			
-								EquipRole('The Hacker', args)
-							end
-						}
+			local Roles = {
+				['Adults'] = {
+					['The Protector'] = {	
+						['Equip'] = function(usingSkin)
+							local args = {
+								[1] = 'Bat',
+								[2] = false,
+								[3] = usingSkin
+							}
+		
+		
+							EquipRole('M', args)
+						end
+					},
+		
+					['The Medic'] = {
+						['Equip'] = function(usingSkin)
+							local args = {
+								[1] = 'MedKit',
+								[2] = false,
+								[3] = usingSkin
+							}
+		
+		
+							EquipRole('M', args)
+						end
 					},
 
-					['Kids'] = {
-						['The Hyper'] = {
-							['Equip'] = function(usingSkin)
-								local args = {
-									[1] = 'Lollipop',
-									[2] = false,
-									[3] = usingSkin
-								}
-			
-			
-								EquipRole('M', args)
-							end
-						},
+					['The Hacker'] = {
+						['Equip'] = function(usingSkin)
+							local args = {
+								[1] = 'Phone',
+								[2] = false,
+								[3] = usingSkin
+							}
+		
+		
+							EquipRole('The Hacker', args)
+						end
+					}
+				},
 
-						['The Sporty'] = {
-							['Equip'] = function(usingSkin)
-								local args = {
-									[1] = 'Bottle',
-									[2] = false,
-									[3] = usingSkin
-								}
-			
-			
-								EquipRole('M', args)
-							end
-						},
+				['Kids'] = {
+					['The Hyper'] = {
+						['Equip'] = function(usingSkin)
+							local args = {
+								[1] = 'Lollipop',
+								[2] = false,
+								[3] = usingSkin
+							}
+		
+		
+							EquipRole('M', args)
+						end
+					},
 
-						['The Nerd'] = {
-							['Equip'] = function(usingSkin)
-								local args = {
-									[1] = 'Book',
-									[2] = false,
-									[3] = usingSkin
-								}
-			
-			
-								EquipRole('The Nerd', args)
-							end
-						}
+					['The Sporty'] = {
+						['Equip'] = function(usingSkin)
+							local args = {
+								[1] = 'Bottle',
+								[2] = false,
+								[3] = usingSkin
+							}
+		
+		
+							EquipRole('M', args)
+						end
+					},
+
+					['The Nerd'] = {
+						['Equip'] = function(usingSkin)
+							local args = {
+								[1] = 'Book',
+								[2] = false,
+								[3] = usingSkin
+							}
+		
+		
+							EquipRole('The Nerd', args)
+						end
 					}
 				}
+			}
 
 
-				local Break_In_Lobby = GamesTab:AddSection('Break In - Lobby')
+
+
+
+
+			local Break_In_Lobby = GamesTab:AddSection('Break In - Lobby')
 				local Roles2 = Break_In_Lobby:AddSubSection('Roles', {default = false})
 
 
@@ -774,7 +780,12 @@ else
 				Roles2:AddButton('Equip', function()
 					RoleSelected(IsUsingSkin)
 				end)
-			end
+
+
+				print('OK')
+
+
+			print('Continue')
 		end
 	end
 end
