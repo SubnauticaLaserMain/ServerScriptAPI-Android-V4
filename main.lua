@@ -225,7 +225,7 @@ else
 
 
 
-		local function DoEvent(Event)
+		local function DoEvent(Event, ...)
 			if Event == 'Cat' then
 				local args = {
 					[1] = 244,
@@ -244,6 +244,15 @@ else
 					}
 
 					RemoteEvents:WaitForChild('BuyItem'):FireServer(unpack(args))
+				else
+					if Event == 'Drown' then
+						local args = {
+							[1] = 1,
+							[2] = Players[({...})[1]]
+						}
+
+						Events:WaitForChild('ToxicDrown'):FireServer(unpack(args))
+					end
 				end
 			end
 		end
@@ -316,6 +325,16 @@ else
 			GiveTool:FireServer(unpack(args))
 		end)
 
+		Break_In_Game_ItemGiver:AddButton(' ')
+
+		Break_In_Game_ItemGiver:AddButton('Give Key', function()
+			local args = {
+				[1] = 'Key'
+			}
+
+			GiveTool:FireServer(unpack(args))
+		end)
+
 
 		
 
@@ -323,8 +342,49 @@ else
 			DoEvent('Cat')
 		end)
 
-		Break_In_Game_Events:AddButton('Buy PiePan', function()
-			
+		Break_In_Game_Events:AddButton('Buy Pie Pan', function()
+			DoEvent('Pan')
+		end)
+
+
+
+		local KillPlayer = Break_In_Game:AddSubSection('KillPlayer')
+
+
+
+		local PlayerSelected = nil
+
+
+
+		local PlayersTable = Players:GetPlayers()
+
+
+		local PlayersToKill = KillPlayer:AddDropdown('Players', PlayersTable, {default = 'nil'}, function(selected)
+			if selected == 'nil' then
+			else
+				PlayerSelected = selected
+			end
+		end)
+
+
+
+		PlayersToKill:Remove(Players.LocalPlayer.Name)
+
+
+		Players.PlayerAdded:Connect(function(plr)
+			PlayersToKill:Add(plr.Name, function(selected)
+				PlayerSelected = selected
+			end)
+		end)
+
+		Players.PlayerRemoved:Connect(function(plr)
+			PlayersToKill:Remove(plr.Name)
+		end)
+
+
+
+		KillPlayer:AddButton('Kill', function()
+			DoEvent('Drown', PlayerSelected)
 		end)
 	end
 end
