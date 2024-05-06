@@ -662,23 +662,39 @@ else
 						end
 					else
 						local HasEquipedMedkitAlready = workspace:FindFirstChild(Players.LocalPlayer.Name)
+						local Ena = false
 
 
 						if HasEquipedMedkitAlready then
-							HasEquipedMedkitAlready = HasEquipedMedkitAlready:GetChildren()
+							for i, v in HasEquipedMedkitAlready:GetChildren() do
+								if v and v.ClassName == 'Tool' and v.Name == 'MedKit' then
+									Ena = true
+								else
+									continue
+								end
+							end
 
-							if HasEquipedMedkitAlready and HasEquipedMedkitAlready.ClassName == 'Tool' and HasEquipedMedkitAlready.Name == 'MedKit' then
+							
+							if Ena then
 								for i, v in Players:GetPlayers() do
 									HealPlayer:FireServer(v.Name)
 									task.wait(0.01)
 								end
 							else
-								Library:Notify('Missing Tool', 'Please get a MedKit First', 10, Color3.fromRGB(255, 0, 0))
+								Library:Notify({
+									title = 'Missing Tool', 
+									text =  'Please get a MedKit First', 
+									duration = 10, 
+									color = Color3.fromRGB(255, 0, 0)
+								})
 							end
 						end
 					end
 				end
 			end
+
+
+			HasMedKit()
 		end)
 	end
 end
@@ -705,11 +721,7 @@ local SetKeyForWindow = CustomizeSection:AddBind('Window Key', Enum.KeyCode.Righ
 end)
 
 
-local args = {
-    [1] = game:GetService("Players").Jk_09linda
-}
 
-game:GetService("ReplicatedStorage").RemoteEvents.HealPlayer:FireServer(unpack(args))
 
 
 
