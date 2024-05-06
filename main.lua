@@ -361,10 +361,13 @@ else
 
 
 
-		local PlayersTable = Players:GetPlayers()
 
 
-		Tabl = PlayersTable
+
+
+		for i, v in Players:GetPlayers() do
+			Tabl[v.Name] = v.Name
+		end
 
 
 
@@ -388,7 +391,7 @@ else
 			PlayersToKill:Add(Tabl[plr.Name])
 		end)
 
-		Players.PlayerRemoved:Connect(function(plr)
+		Players.PlayerRemoving:Connect(function(plr)
 			PlayersToKill:Remove(plr.Name)
 		end)
 
