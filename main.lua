@@ -353,6 +353,58 @@ else
 			GiveTool:FireServer(unpack(args))
 		end)
 
+		Break_In_Game_ItemGiver:AddButton(' ')
+
+		Break_In_Game_ItemGiver:AddButton('Give Bat', function()
+			local args = {
+				[1] = 'Bat'
+			}
+
+			GiveTool:FireServer(unpack(args))
+		end)
+
+		Break_In_Game_ItemGiver:AddButton('Give Broom', function()
+			local args = {
+				[1] = 'Broom'
+			}
+
+			GiveTool:FireServer(unpack(args))
+		end)
+
+		Break_In_Game_ItemGiver:AddButton('Give Hammer', function()
+			local args = {
+				[1] = 'Hammer'
+			}
+
+			GiveTool:FireServer(unpack(args))
+		end)
+
+		Break_In_Game_ItemGiver:AddButton('Give Wrench', function()
+			local args = {
+				[1] = 'Wrench'
+			}
+
+			GiveTool:FireServer(unpack(args))
+		end)
+
+		Break_In_Game_ItemGiver:AddButton('Give Pitchfork', function()
+			local args = {
+				[1] = 'Pitchfork'
+			}
+
+			GiveTool:FireServer(unpack(args))
+		end)
+
+		Break_In_Game_ItemGiver:AddButton('Give Crowbar', function()
+			local args = {
+				[1] = 'Crowbar'
+			}
+
+			GiveTool:FireServer(unpack(args))
+		end)
+
+
+
 
 		
 
