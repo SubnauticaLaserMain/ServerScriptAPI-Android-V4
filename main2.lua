@@ -658,104 +658,110 @@ else
 						MakeRole:FireServer(unpack(RoleData))
 					end
 				end	
+			end
 
 
-				local Roles = {
-					['Adults'] = {
-						['The Protector'] = {	
-							['Equip'] = function(usingSkin)
-								local args = {
-									[1] = 'Bat',
-									[2] = false,
-									[3] = usingSkin
-								}
-			
-			
-								EquipRole('M', args)
-							end
-						},
-			
-						['The Medic'] = {
-							['Equip'] = function(usingSkin)
-								local args = {
-									[1] = 'MedKit',
-									[2] = false,
-									[3] = usingSkin
-								}
-			
-			
-								EquipRole('M', args)
-							end
-						},
 
-						['The Hacker'] = {
-							['Equip'] = function(usingSkin)
-								local args = {
-									[1] = 'Phone',
-									[2] = false,
-									[3] = usingSkin
-								}
-			
-			
-								EquipRole('The Hacker', args)
-							end
-						}
+			local Roles = {
+				['Adults'] = {
+					['The Protector'] = {	
+						['Equip'] = function(usingSkin)
+							local args = {
+								[1] = 'Bat',
+								[2] = false,
+								[3] = usingSkin
+							}
+		
+		
+							EquipRole('M', args)
+						end
+					},
+		
+					['The Medic'] = {
+						['Equip'] = function(usingSkin)
+							local args = {
+								[1] = 'MedKit',
+								[2] = false,
+								[3] = usingSkin
+							}
+		
+		
+							EquipRole('M', args)
+						end
 					},
 
-					['Kids'] = {
-						['The Hyper'] = {
-							['Equip'] = function(usingSkin)
-								local args = {
-									[1] = 'Lollipop',
-									[2] = false,
-									[3] = usingSkin
-								}
-			
-			
-								EquipRole('M', args)
-							end
-						},
+					['The Hacker'] = {
+						['Equip'] = function(usingSkin)
+							local args = {
+								[1] = 'Phone',
+								[2] = false,
+								[3] = usingSkin
+							}
+		
+		
+							EquipRole('The Hacker', args)
+						end
+					}
+				},
 
-						['The Sporty'] = {
-							['Equip'] = function(usingSkin)
-								local args = {
-									[1] = 'Bottle',
-									[2] = false,
-									[3] = usingSkin
-								}
-			
-			
-								EquipRole('M', args)
-							end
-						},
+				['Kids'] = {
+					['The Hyper'] = {
+						['Equip'] = function(usingSkin)
+							local args = {
+								[1] = 'Lollipop',
+								[2] = false,
+								[3] = usingSkin
+							}
+		
+		
+							EquipRole('M', args)
+						end
+					},
 
-						['The Nerd'] = {
-							['Equip'] = function(usingSkin)
-								local args = {
-									[1] = 'Book',
-									[2] = false,
-									[3] = usingSkin
-								}
-			
-			
-								EquipRole('The Nerd', args)
-							end
-						}
+					['The Sporty'] = {
+						['Equip'] = function(usingSkin)
+							local args = {
+								[1] = 'Bottle',
+								[2] = false,
+								[3] = usingSkin
+							}
+		
+		
+							EquipRole('M', args)
+						end
+					},
+
+					['The Nerd'] = {
+						['Equip'] = function(usingSkin)
+							local args = {
+								[1] = 'Book',
+								[2] = false,
+								[3] = usingSkin
+							}
+		
+		
+							EquipRole('The Nerd', args)
+						end
 					}
 				}
+			}
 
 
-				local Break_In_Lobby = GamesTab:AddSection('Break In - Lobby')
+
+
+
+
+			local Break_In_Lobby = GamesTab:AddSection('Break In 2 - Lobby')
 				local Roles2 = Break_In_Lobby:AddSubSection('Roles', {default = false})
 
 
 
 
 
-				local Adults = Roles2:AddDropdown('Adults', {'The Protector', 'The Medic', 'The Officer', 'The Swat'}, {default = 'The Protector'}, function(selected)
+				local Adults = Roles2:AddDropdown('Adults', {'The Protector', 'The Medic', 'The Hacker'}, {default = 'The Protector'}, function(selected)
 					RoleSelected = Roles['Adults'][selected]['Equip']
 				end)
-				local Kids = Roles2:AddDropdown('Kids', {'The Stealthy', 'The Hungry', 'The Fighter'}, {default = 'The Stealthy'}, function(selected)
+				local Kids = Roles2:AddDropdown('Kids', {'The Hyper', 'The Sporty', 'The Nerd'}, {default = 'The Hyper'}, function(selected)
 					RoleSelected = Roles['Kids'][selected]['Equip']
 				end)
 			
@@ -777,7 +783,6 @@ else
 
 
 				print('OK')
-			end
 
 
 			print('Continue')
