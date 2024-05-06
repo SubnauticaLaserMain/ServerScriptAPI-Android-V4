@@ -335,6 +335,52 @@ else
 			GiveTool:FireServer(unpack(args))
 		end)
 
+		Break_In_Game_ItemGiver:AddButton(' ')
+
+		Break_In_Game_ItemGiver:AddButton('Give MedKit', function()
+			local args = {
+				[1] = 'MedKit'
+			}
+
+			GiveTool:FireServer(unpack(args))
+		end)
+
+		Break_In_Game_ItemGiver:AddButton('Give Cure', function()
+			local args = {
+				[1] = 'Cure'
+			}
+
+			GiveTool:FireServer(unpack(args))
+		end)
+
+		Break_In_Game_ItemGiver:AddButton(' ')
+
+		Break_In_Game_ItemGiver:AddButton('Give Bat', function()
+			local args = {
+				[1] = 'Bat'
+			}
+
+			GiveTool:FireServer(unpack(args))
+		end)
+
+		Break_In_Game_ItemGiver:AddButton('Give LinkedSword', function()
+			local args = {
+				[1] = 'LinkedSword'
+			}
+
+			GiveTool:FireServer(unpack(args))
+		end)
+
+		Break_In_Game_ItemGiver:AddButton(' ')
+
+		Break_In_Game_ItemGiver:AddButton('Give TeddyBear', function()
+			local args = {
+				[1] = 'TeddyBloxpin'
+			}
+
+			GiveTool:FireServer(unpack(args))
+		end)
+
 
 		
 
@@ -345,6 +391,15 @@ else
 		Break_In_Game_Events:AddButton('Buy Pie Pan', function()
 			DoEvent('Pan')
 		end)
+
+		Break_In_Game_Events:AddButton('Activate Basement Lights', function()
+			Events:WaitForChild('BasementMission'):FireServer()
+		end)
+
+		Break_In_Game_Events:AddButton('Skip Television', function()
+			Events:WaitForChild('SkipTele'):FireServer()
+		end)
+
 
 
 
@@ -391,7 +446,7 @@ else
 			PlayersToKill:Add(Tabl[plr.Name])
 		end)
 
-		Players.PlayerRemoved:Connect(function(plr)
+		Players.PlayerRemoving:Connect(function(plr)
 			PlayersToKill:Remove(plr.Name)
 		end)
 
