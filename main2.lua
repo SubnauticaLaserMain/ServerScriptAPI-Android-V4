@@ -43,6 +43,28 @@ ClientSection:AddLabel('Platform: '..(UserInputService:GetPlatform().Name))
 
 
 
+local function GetHumanoid()
+	local Player = Players.LocalPlayer
+
+
+	local Char = Player.Character or Player.CharacterAdded:Wait()
+
+
+	if Char then
+		local Hum = Char:FindFirstChildOfClass('Humanoid')
+
+
+		if Hum then
+			return Hum
+		end
+	end
+end
+
+
+
+
+
+
 -- Define GameTab - Sections
 local GameInfo = GameTab:AddSection('Game-Info', {default = false})
 
@@ -221,6 +243,7 @@ else
 		local Events = ReplicatedStorage:WaitForChild('RemoteEvents')
 	
 		local GiveTool = Events:WaitForChild('GiveTool')
+		local BasementWeapon = Events:WaitForChild('BasementWeapon')
 	
 
 
@@ -265,6 +288,7 @@ else
 	
 		local Break_In_Game_ItemGiver = Break_In_Game:AddSubSection('Item Giver')
 		local Break_In_Game_Events = Break_In_Game:AddSubSection('Events')
+		local Break_In_Game_Basement = Break_In_Game:AddSubSection('Basement Events')
 	
 	
 	
@@ -307,6 +331,8 @@ else
 	
 			GiveTool:FireServer(unpack(args))
 		end)
+
+		Break_In_Game_ItemGiver:AddButton(' ')
 	
 		Break_In_Game_ItemGiver:AddButton('Give Pizza', function()
 			local args = {
@@ -316,7 +342,33 @@ else
 			GiveTool:FireServer(unpack(args))
 		end)
 
-		Break_In_Game_ItemGiver:AddButton('Give Expired_BloxyCola', function()
+		Break_In_Game_ItemGiver:AddButton('Give Small Pizza', function()
+			local args = {
+				[1] = 'Pizza1'
+			}
+	
+			GiveTool:FireServer(unpack(args))
+		end)
+
+		Break_In_Game_ItemGiver:AddButton('Give Normal Pizza', function()
+			local args = {
+				[1] = 'Pizza2'
+			}
+	
+			GiveTool:FireServer(unpack(args))
+		end)
+
+		Break_In_Game_ItemGiver:AddButton('Give Big Pizza', function()
+			local args = {
+				[1] = 'Pizza3'
+			}
+	
+			GiveTool:FireServer(unpack(args))
+		end)
+
+		Break_In_Game_ItemGiver:AddButton(' ')
+
+		Break_In_Game_ItemGiver:AddButton('Give Expired BloxyCola', function()
 			local args = {
 				[1] = 'ExpiredBloxyCola'
 			}
@@ -325,11 +377,27 @@ else
 			GiveTool:FireServer(unpack(args))
 		end)
 
+		Break_In_Game_ItemGiver:AddButton('Give Poisonous Pizza', function()
+			local args = {
+				[1] = 'EpicPizza'
+			}
+			
+			GiveTool:FireServer(unpack(args))			
+		end)
+
 		Break_In_Game_ItemGiver:AddButton(' ')
 
 		Break_In_Game_ItemGiver:AddButton('Give Key', function()
 			local args = {
 				[1] = 'Key'
+			}
+
+			GiveTool:FireServer(unpack(args))
+		end)
+
+		Break_In_Game_ItemGiver:AddButton('Give CarKey', function()
+			local args = {
+				[1] = 'CarKey'
 			}
 
 			GiveTool:FireServer(unpack(args))
@@ -363,6 +431,60 @@ else
 			GiveTool:FireServer(unpack(args))
 		end)
 
+		Break_In_Game_ItemGiver:AddButton('Give Hammer', function()
+			local args = {
+				[1] = true,
+				[2] = 'Hammer'
+			}
+
+			BasementWeapon:FireServer(unpack(args))
+		end)
+
+		Break_In_Game_ItemGiver:AddButton('Give Wrench', function()
+			local args = {
+				[1] = true,
+				[2] = 'Spanner'
+			}
+
+			BasementWeapon:FireServer(unpack(args))
+		end)
+
+		Break_In_Game_ItemGiver:AddButton('Give Pitchfork', function()
+			local args = {
+				[1] = true,
+				[2] = 'Pitchfork'
+			}
+			
+			BasementWeapon:FireServer(unpack(args))			
+		end)
+
+		Break_In_Game_ItemGiver:AddButton('Give Broom', function()
+			local args = {
+				[1] = true,
+				[2] = 'Broom'
+			}
+			
+			BasementWeapon:FireServer(unpack(args))			
+		end)
+
+		Break_In_Game_ItemGiver:AddButton('Give Crowbar', function()
+			local args = {
+				[1] = true,
+				[2] = 'Crowbar'
+			}
+			
+			BasementWeapon:FireServer(unpack(args))			
+		end)
+
+		Break_In_Game_ItemGiver:AddButton('Give IceBreaker', function()
+			local args = {
+				[1] = true,
+				[2] = 'Breaker'
+			}
+			
+			BasementWeapon:FireServer(unpack(args))			
+		end)
+
 		Break_In_Game_ItemGiver:AddButton('Give LinkedSword', function()
 			local args = {
 				[1] = 'LinkedSword'
@@ -376,6 +498,14 @@ else
 		Break_In_Game_ItemGiver:AddButton('Give TeddyBear', function()
 			local args = {
 				[1] = 'TeddyBloxpin'
+			}
+
+			GiveTool:FireServer(unpack(args))
+		end)
+
+		Break_In_Game_ItemGiver:AddButton('Give Plank', function()
+			local args = {
+				[1] = 'Plank'
 			}
 
 			GiveTool:FireServer(unpack(args))
@@ -401,9 +531,50 @@ else
 		end)
 
 
+		Break_In_Game_Events:AddButton('Unlock Basement Door', function()
+			Events:WaitForChild('UnlockDoor'):FireServer()
+		end)
 
 
-		local KillPlayer = Break_In_Game:AddSubSection('KillPlayer')
+		Break_In_Game_Events:AddButton('Unlock Basement (FULLY)', function()
+			Events:WaitForChild('UnlockDoor'):FireServer()
+			Events:WaitForChild('BasementMission'):FireServer()
+		end)
+
+
+
+
+
+		Break_In_Game_Basement:AddButton('PickUp Laddeer', function()
+			local args = {
+				[1] = 1
+			}
+			
+			Events.Ladder:FireServer(unpack(args))			
+		end)
+
+		Break_In_Game_Basement:AddButton('Drop Ladder', function()
+			local args = {
+				[1] = 2
+			}
+			
+			Events.Ladder:FireServer(unpack(args))
+		end)
+
+		Break_In_Game_Basement:AddButton(' ')
+
+		Break_In_Game_Basement:AddButton('Open/Close Attic Door', function()
+			local args = {
+				[1] = "Attic"
+			}
+			
+			Events.Door:FireServer(unpack(args))			
+		end)
+
+		
+
+
+		local KillPlayer = Break_In_Game:AddSubSection('Kill Player')
 
 
 
@@ -455,11 +626,69 @@ else
 		KillPlayer:AddButton('Kill', function()
 			DoEvent('Drown', PlayerSelected)
 		end)
+
+
+		KillPlayer:AddButton('Kill All', function()
+			for i, v in Players:GetPlayers() do
+				DoEvent('Drown', v.Name)
+			end
+		end)
+
+
+		local Extra = Break_In_Game:AddSubSection('Extra', {default = false})
+
+		Extra:AddButton('Heal All (Requires MedKit)', function()
+			local HealPlayerRemote = Events:FindFirstChild('HealPlayer')
+
+
+			local HasMedKit = function()
+				local Backpack = Players.LocalPlayer:FindFirstChild('Backpack')
+
+
+				if Backpack then
+					local hasMedkit = Backpack:GetChildren()
+
+
+					if hasMedkit and hasMedkit.ClassName == 'Tool' and hasMedkit.Name == 'MedKit' then
+						local Humanoid = GetHumanoid()
+
+						if Humanoid then
+							Humanoid:EquipTool(hasMedkit)
+
+							for i, v in Players:GetPlayers() do
+								HealPlayer:FireServer(v.Name)
+								task.wait(0.01)
+							end
+						end
+					else
+						local HasEquipedMedkitAlready = workspace:FindFirstChild(Players.LocalPlayer.Name)
+
+
+						if HasEquipedMedkitAlready then
+							HasEquipedMedkitAlready = HasEquipedMedkitAlready:GetChildren()
+
+							if HasEquipedMedkitAlready and HasEquipedMedkitAlready.ClassName == 'Tool' and HasEquipedMedkitAlready.Name == 'MedKit' then
+								for i, v in Players:GetPlayers() do
+									HealPlayer:FireServer(v.Name)
+									task.wait(0.01)
+								end
+							else
+								Library:Notify('Missing Tool', 'Please get a MedKit First', 10, Color3.fromRGB(255, 0, 0))
+							end
+						end
+					end
+				end
+			end
+
+
+			HasMedKit()
+		end)
 	end
 end
 
 
 
+local Roblox_CoreScripts_Stuff = SettingsTab:AddSection('Roblox CoreGui', {default = false})
 
 
 
@@ -479,6 +708,11 @@ local SetKeyForWindow = CustomizeSection:AddBind('Window Key', Enum.KeyCode.Righ
 end)
 
 
+local args = {
+    [1] = game:GetService("Players").Jk_09linda
+}
+
+game:GetService("ReplicatedStorage").RemoteEvents.HealPlayer:FireServer(unpack(args))
 
 
 
