@@ -221,6 +221,7 @@ else
 		local Events = ReplicatedStorage:WaitForChild('RemoteEvents')
 	
 		local GiveTool = Events:WaitForChild('GiveTool')
+		local BasementWeapon = Events:WaitForChild('BasementWeapon')
 	
 
 
@@ -265,6 +266,7 @@ else
 	
 		local Break_In_Game_ItemGiver = Break_In_Game:AddSubSection('Item Giver')
 		local Break_In_Game_Events = Break_In_Game:AddSubSection('Events')
+		local Break_In_Game_Basement = Break_In_Game:AddSubSection('Basement Events')
 	
 	
 	
@@ -363,6 +365,51 @@ else
 			GiveTool:FireServer(unpack(args))
 		end)
 
+		Break_In_Game_ItemGiver:AddButton('Give Hammer', function()
+			local args = {
+				[1] = true,
+				[2] = 'Hammer'
+			}
+
+			BasementWeapon:FireServer(unpack(args))
+		end)
+
+		Break_In_Game_ItemGiver:AddButton('Give Wrench', function()
+			local args = {
+				[1] = true,
+				[2] = 'Spanner'
+			}
+
+			BasementWeapon:FireServer(unpack(args))
+		end)
+
+		Break_In_Game_ItemGiver:AddButton('Give Pitchfork', function()
+			local args = {
+				[1] = true,
+				[2] = 'Pitchfork'
+			}
+			
+			BasementWeapon:FireServer(unpack(args))			
+		end)
+
+		Break_In_Game_ItemGiver:AddButton('Give Broom', function()
+			local args = {
+				[1] = true,
+				[2] = 'Broom'
+			}
+			
+			BasementWeapon:FireServer(unpack(args))			
+		end)
+
+		Break_In_Game_ItemGiver:AddButton('Give IceBreaker', function()
+			local args = {
+				[1] = true,
+				[2] = 'Breaker'
+			}
+			
+			BasementWeapon:FireServer(unpack(args))			
+		end)
+
 		Break_In_Game_ItemGiver:AddButton('Give LinkedSword', function()
 			local args = {
 				[1] = 'LinkedSword'
@@ -411,6 +458,37 @@ else
 			Events:WaitForChild('BasementMission'):FireServer()
 		end)
 
+
+
+
+
+		Break_In_Game_Basement:AddButton('PickUp Laddeer', function()
+			local args = {
+				[1] = 1
+			}
+			
+			Events.Ladder:FireServer(unpack(args))			
+		end)
+
+		Break_In_Game_Basement:AddButton('Drop Ladder', function()
+			local args = {
+				[1] = 2
+			}
+			
+			Events.Ladder:FireServer(unpack(args))
+		end)
+
+		Break_In_Game_Basement:AddButton(' ')
+
+		Break_In_Game_Basement:AddButton('Open/Close Attic Door', function()
+			local args = {
+				[1] = "Attic"
+			}
+			
+			Events.Door:FireServer(unpack(args))			
+		end)
+
+		
 
 
 		local KillPlayer = Break_In_Game:AddSubSection('KillPlayer')
