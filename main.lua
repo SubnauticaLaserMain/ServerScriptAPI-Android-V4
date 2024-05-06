@@ -363,47 +363,23 @@ else
 			GiveTool:FireServer(unpack(args))
 		end)
 
-		Break_In_Game_ItemGiver:AddButton('Give Broom', function()
+		Break_In_Game_ItemGiver:AddButton('Give LinkedSword', function()
 			local args = {
-				[1] = 'Broom'
+				[1] = 'LinkedSword'
 			}
 
 			GiveTool:FireServer(unpack(args))
 		end)
 
-		Break_In_Game_ItemGiver:AddButton('Give Hammer', function()
+		Break_In_Game_ItemGiver:AddButton(' ')
+
+		Break_In_Game_ItemGiver:AddButton('Give TeddyBear', function()
 			local args = {
-				[1] = 'Hammer'
+				[1] = 'TeddyBloxpin'
 			}
 
 			GiveTool:FireServer(unpack(args))
 		end)
-
-		Break_In_Game_ItemGiver:AddButton('Give Wrench', function()
-			local args = {
-				[1] = 'Wrench'
-			}
-
-			GiveTool:FireServer(unpack(args))
-		end)
-
-		Break_In_Game_ItemGiver:AddButton('Give Pitchfork', function()
-			local args = {
-				[1] = 'Pitchfork'
-			}
-
-			GiveTool:FireServer(unpack(args))
-		end)
-
-		Break_In_Game_ItemGiver:AddButton('Give Crowbar', function()
-			local args = {
-				[1] = 'Crowbar'
-			}
-
-			GiveTool:FireServer(unpack(args))
-		end)
-
-
 
 
 		
@@ -424,6 +400,16 @@ else
 			Events:WaitForChild('SkipTele'):FireServer()
 		end)
 
+
+		Break_In_Game_Events:AddButton('Unlock Basement Door', function()
+			Events:WaitForChild('UnlockDoor'):FireServer()
+		end)
+
+
+		Break_In_Game_Events:AddButton('Unlock Basement (FULLY)', function()
+			Events:WaitForChild('UnlockDoor'):FireServer()
+			Events:WaitForChild('BasementMission'):FireServer()
+		end)
 
 
 
@@ -479,11 +465,19 @@ else
 		KillPlayer:AddButton('Kill', function()
 			DoEvent('Drown', PlayerSelected)
 		end)
+
+
+		KillPlayer:AddButton('KillAll', function()
+			for i, v in game:GetPlayers() do
+				DoEvent('Drown', v.Name)
+			end
+		end)
 	end
 end
 
 
 
+local Roblox_CoreScripts_Stuff = SettingsTab:AddSection('Roblox CoreGui', {default = false})
 
 
 
