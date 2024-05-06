@@ -216,81 +216,120 @@ if game.PlaceId == 3851622790 then
 	Roles2:AddButton('Equip', function()
 		RoleSelected(IsUsingSkin)
 	end)
-
-	print('Break In ')
 else
-	print('OK WORKING')
-end
-
-if game.PlaceId == 4620170611 then
-
-	print('Break In 2')
-	local Events = ReplicatedStorage:WaitForChild('RemoteEvents')
-
-	local GiveTool = Events:WaitForChild('GiveTool')
-
-
-
-
-
-	local Break_In_Game = GamesTab:AddSection('Break In - In-Game')
+	if game.PlaceId == 4620170611 then
+		local Events = ReplicatedStorage:WaitForChild('RemoteEvents')
+	
+		local GiveTool = Events:WaitForChild('GiveTool')
 	
 
-	local Break_In_Game_ItemGiver = Break_In_Game:AddSubSection('Item Giver')
-	local Break_In_Game_Events = Break_In_Game:AddSubSection('Events')
 
 
-
-	Break_In_Game_ItemGiver:AddButton('Give Apple', function()
-		local args = {
-			[1] = 'Apple'
-		}
-
-		GiveTool:FireServer(unpack(args))
-	end)
-
-	Break_In_Game_ItemGiver:AddButton('Give Cookie', function()
-		local args = {
-			[1] = 'Cookie'
-		}
-
-		GiveTool:FireServer(unpack(args))
-	end)
-
-	Break_In_Game_ItemGiver:AddButton('Give BloxyCola', function()
-		local args = {
-			[1] = 'BloxyCola'
-		}
-
-		GiveTool:FireServer(unpack(args))
-	end)
-
-	Break_In_Game_ItemGiver:AddButton('Give Chips', function()
-		local args = {
-			[1] = 'Chips'
-		}
-
-		GiveTool:FireServer(unpack(args))
-	end)
-
-	Break_In_Game_ItemGiver:AddButton('Give Lollipop', function()
-		local args = {
-			[1] = 'Lollipop'
-		}
-
-		GiveTool:FireServer(unpack(args))
-	end)
-
-	Break_In_Game_ItemGiver:AddButton('Give Pizza', function()
-		local args = {
-			[1] = 'Pizza'
-		}
-
-		GiveTool:FireServer(unpack(args))
-	end)
+		local function DoEvent(Event)
+			if Event == 'Cat' then
+				local args = {
+					[1] = 244,
+					[2] = true
+				}
 
 
+				Events:WaitForChild('DoDialogue'):FireServer(unpack(args))
+
+				Events:WaitForChild('Cattery'):FireServer()
+			else
+				if Event == 'Pan' then
+					local args = {
+						[1] = 'Pan',
+						[2] = 0
+					}
+
+					RemoteEvents:WaitForChild('BuyItem'):FireServer(unpack(args))
+				end
+			end
+		end
+	
+	
+	
+	
+		local Break_In_Game = GamesTab:AddSection('Break In - In-Game')
+		
+	
+		local Break_In_Game_ItemGiver = Break_In_Game:AddSubSection('Item Giver')
+		local Break_In_Game_Events = Break_In_Game:AddSubSection('Events')
+	
+	
+	
+		Break_In_Game_ItemGiver:AddButton('Give Apple', function()
+			local args = {
+				[1] = 'Apple'
+			}
+	
+			GiveTool:FireServer(unpack(args))
+		end)
+	
+		Break_In_Game_ItemGiver:AddButton('Give Cookie', function()
+			local args = {
+				[1] = 'Cookie'
+			}
+	
+			GiveTool:FireServer(unpack(args))
+		end)
+	
+		Break_In_Game_ItemGiver:AddButton('Give BloxyCola', function()
+			local args = {
+				[1] = 'BloxyCola'
+			}
+	
+			GiveTool:FireServer(unpack(args))
+		end)
+	
+		Break_In_Game_ItemGiver:AddButton('Give Chips', function()
+			local args = {
+				[1] = 'Chips'
+			}
+	
+			GiveTool:FireServer(unpack(args))
+		end)
+	
+		Break_In_Game_ItemGiver:AddButton('Give Lollipop', function()
+			local args = {
+				[1] = 'Lollipop'
+			}
+	
+			GiveTool:FireServer(unpack(args))
+		end)
+	
+		Break_In_Game_ItemGiver:AddButton('Give Pizza', function()
+			local args = {
+				[1] = 'Pizza3'
+			}
+	
+			GiveTool:FireServer(unpack(args))
+		end)
+
+		Break_In_Game_ItemGiver:AddButton('Give Expired_BloxyCola', function()
+			local args = {
+				[1] = 'ExpiredBloxyCola'
+			}
+
+
+			GiveTool:FireServer(unpack(args))
+		end)
+
+
+		
+
+		Break_In_Game_Events:AddButton('Best Friend Cat', function()
+			DoEvent('Cat')
+		end)
+
+		Break_In_Game_Events:AddButton('Buy PiePan', function()
+			
+		end)
+	end
 end
+
+
 
 
 
