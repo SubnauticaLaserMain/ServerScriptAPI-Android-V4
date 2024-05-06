@@ -335,6 +335,24 @@ else
 			GiveTool:FireServer(unpack(args))
 		end)
 
+		Break_In_Game_ItemGiver:AddButton(' ')
+
+		Break_In_Game_ItemGiver:AddButton('Give MedKit', function()
+			local args = {
+				[1] = 'MedKit'
+			}
+
+			GiveTool:FireServer(unpack(args))
+		end)
+
+		Break_In_Game_ItemGiver:AddButton('Give Cure', function()
+			local args = {
+				[1] = 'Cure'
+			}
+
+			GiveTool:FireServer(unpack(args))
+		end)
+
 
 		
 
@@ -345,6 +363,15 @@ else
 		Break_In_Game_Events:AddButton('Buy Pie Pan', function()
 			DoEvent('Pan')
 		end)
+
+		Break_In_Game_Events:AddButton('Activate Basement Lights', function()
+			Events:WaitForChild('BasementMission'):FireServer()
+		end)
+
+		Break_In_Game_Events:AddButton('Skip Television', function()
+			Events:WaitForChild('SkipTele'):FireServer()
+		end)
+
 
 
 
