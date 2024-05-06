@@ -633,88 +633,154 @@ else
 				DoEvent('Drown', v.Name)
 			end
 		end)
+	else
+		if game.PlaceId == 13864661000 then
+			--[[Break In (Story)]]
+			local RemoteEvents = ReplicatedStorage:WaitForChild('RemoteEvents')
 
 
-		local Extra = Break_In_Game:AddSubSection('Extra', {default = false})
-
-		Extra:AddButton('Heal All (Requires MedKit)', function()
-			local HealPlayerRemote = Events:FindFirstChild('HealPlayer')
-
-
-			local HasMedKit = function()
-				local Backpack = Players.LocalPlayer:FindFirstChild('Backpack')
-
-
-				if Backpack then
-					local hasMedkit = Backpack:GetChildren()
-					local BackpackEna = false
-
-
-					for i, v in Backpack:GetChildren() do
-						if v and v.ClassName == 'Tool' and v.Name == 'MedKit' then
-							BackpackEna = true
-							hasMedkit = v
-							break
-						else
-							continue
-						end
-					end
-
-
-					if BackpackEna then
-						local Humanoid = GetHumanoid()
-
-						if Humanoid then
-							Humanoid:EquipTool(hasMedkit)
-
-							for i, v in Players:GetPlayers() do
-								HealPlayerRemote:FireServer(v)
-								task.wait(0.01)
-							end
-						end
+			local function EquipRole(Role, RoleData)
+				local MakeRole = RemoteEvents:WaitForChild('MakeRole')
+				local OutsideRole = RemoteEvents:WaitForChild('OutsideRole')
+		
+		
+		
+				if Role and RoleData then
+					if Role == 'The Hacker' or Role == 'The Nerd' then
+						local OutsideRole_Data = {
+							[1] = RoleData[1],
+							[2] = RoleData[3]
+						}
+		
+						OutsideRole:FireServer(unpack(OutsideRole_Data))
+						MakeRole:FireServer(unpack(RoleData))
 					else
-						local HasEquipedMedkitAlready = workspace:FindFirstChild(Players.LocalPlayer.Name)
-						local Ena = false
-
-
-						if HasEquipedMedkitAlready then
-							for i, v in HasEquipedMedkitAlready:GetChildren() do
-								if v and v.ClassName == 'Tool' and v.Name == 'MedKit' then
-									Ena = true
-									break
-								else
-									continue
-								end
-							end
-
-
-							if Ena then
-								for i, v in Players:GetPlayers() do
-									HealPlayerRemote:FireServer(v)
-									task.wait(0.01)
-								end
-							else
-								Library:Notify({
-									title = 'Missing Tool', 
-									text =  'Please get a MedKit First', 
-									duration = 10, 
-									color = Color3.fromRGB(255, 0, 0)
-								})
-							end
-						end
+						MakeRole:FireServer(unpack(RoleData))
 					end
-				end
+				end	
+
+
+				local Roles = {
+					['Adults'] = {
+						['The Protector'] = {	
+							['Equip'] = function(usingSkin)
+								local args = {
+									[1] = 'Bat',
+									[2] = false,
+									[3] = usingSkin
+								}
+			
+			
+								EquipRole('M', args)
+							end
+						},
+			
+						['The Medic'] = {
+							['Equip'] = function(usingSkin)
+								local args = {
+									[1] = 'MedKit',
+									[2] = false,
+									[3] = usingSkin
+								}
+			
+			
+								EquipRole('M', args)
+							end
+						},
+
+						['The Hacker'] = {
+							['Equip'] = function(usingSkin)
+								local args = {
+									[1] = 'Phone',
+									[2] = false,
+									[3] = usingSkin
+								}
+			
+			
+								EquipRole('The Hacker', args)
+							end
+						}
+					},
+
+					['Kids'] = {
+						['The Hyper'] = {
+							['Equip'] = function(usingSkin)
+								local args = {
+									[1] = 'Lollipop',
+									[2] = false,
+									[3] = usingSkin
+								}
+			
+			
+								EquipRole('M', args)
+							end
+						},
+
+						['The Sporty'] = {
+							['Equip'] = function(usingSkin)
+								local args = {
+									[1] = 'Bottle',
+									[2] = false,
+									[3] = usingSkin
+								}
+			
+			
+								EquipRole('M', args)
+							end
+						},
+
+						['The Nerd'] = {
+							['Equip'] = function(usingSkin)
+								local args = {
+									[1] = 'Book',
+									[2] = false,
+									[3] = usingSkin
+								}
+			
+			
+								EquipRole('The Nerd', args)
+							end
+						}
+					}
+				}
+
+
+				local Break_In_Lobby = GamesTab:AddSection('Break In - Lobby')
+				local Roles2 = Break_In_Lobby:AddSubSection('Roles', {default = false})
+
+
+
+
+
+				local Adults = Roles2:AddDropdown('Adults', {'The Protector', 'The Medic', 'The Officer', 'The Swat'}, {default = 'The Protector'}, function(selected)
+					RoleSelected = Roles['Adults'][selected]['Equip']
+				end)
+				local Kids = Roles2:AddDropdown('Kids', {'The Stealthy', 'The Hungry', 'The Fighter'}, {default = 'The Stealthy'}, function(selected)
+					RoleSelected = Roles['Kids'][selected]['Equip']
+				end)
+			
+				
+				local UsingSkin = Roles2:AddToggle('Using Skin', {flag = 'Toggle_Flag', default = false}, function(bool)
+					IsUsingSkin = bool
+				end)
+			
+
+
+				local RoleSelected = function(...) print('Please Select a Role') end
+				local IsUsingSkin = false
+
+
+			
+				Roles2:AddButton('Equip', function()
+					RoleSelected(IsUsingSkin)
+				end)
 			end
-
-
-			HasMedKit()
-		end)
+		end
 	end
 end
 
 
 
-local Roblox_CoreScripts_Stuff = SettingsTab:AddSection('Roblox CoreGui', {default = false})
 
 
 
