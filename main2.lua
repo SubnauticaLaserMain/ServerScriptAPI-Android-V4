@@ -352,14 +352,27 @@ else
 
 
 
+
+		local Tabl = {}
+
+
+
 		local PlayerSelected = nil
 
 
 
-		local PlayersTable = Players:GetPlayers()
 
 
-		local PlayersToKill = KillPlayer:AddDropdown('Players', PlayersTable, {default = 'nil'}, function(selected)
+
+
+		for i, v in Players:GetPlayers() do
+			Tabl[v.Name] = v.Name
+		end
+
+
+
+
+		local PlayersToKill = KillPlayer:AddDropdown('Players', Tabl, {default = 'nil'}, function(selected)
 			if selected == 'nil' then
 			else
 				PlayerSelected = selected
@@ -372,7 +385,10 @@ else
 
 
 		Players.PlayerAdded:Connect(function(plr)
-			PlayersToKill:Add(plr.Name)
+			Tabl[plr.Name] = plr.Name
+
+
+			PlayersToKill:Add(Tabl[plr.Name])
 		end)
 
 		Players.PlayerRemoved:Connect(function(plr)
