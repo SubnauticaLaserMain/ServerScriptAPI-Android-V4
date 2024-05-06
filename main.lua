@@ -43,6 +43,28 @@ ClientSection:AddLabel('Platform: '..(UserInputService:GetPlatform().Name))
 
 
 
+local function GetHumanoid()
+	local Player = Players.LocalPlayer
+
+
+	local Char = Player.Character or Player.CharacterAdded:Wait()
+
+
+	if Char then
+		local Hum = Char:FindFirstChildOfClass('Humanoid')
+
+
+		if Hum then
+			return Hum
+		end
+	end
+end
+
+
+
+
+
+
 -- Define GameTab - Sections
 local GameInfo = GameTab:AddSection('Game-Info', {default = false})
 
@@ -607,8 +629,55 @@ else
 
 
 		KillPlayer:AddButton('Kill All', function()
-			for i, v in game:GetPlayers() do
+			for i, v in Players:GetPlayers() do
 				DoEvent('Drown', v.Name)
+			end
+		end)
+
+
+		local Extra = Break_In_Game:AddSubSection('Extra', {default = false})
+
+		Extra:AddButton('Heal All (Requires MedKit)', function()
+			local HealPlayerRemote = Events:FindFirstChild('HealPlayer')
+
+
+			local HasMedKit = function()
+				local Backpack = Players.LocalPlayer:FindFirstChild('Backpack')
+
+
+				if Backpack then
+					local hasMedkit = Backpack:GetChildren()
+
+
+					if hasMedkit and hasMedkit.ClassName == 'Tool' and hasMedkit.Name == 'MedKit' then
+						local Humanoid = GetHumanoid()
+
+						if Humanoid then
+							Humanoid:EquipTool(hasMedkit)
+
+							for i, v in Players:GetPlayers() do
+								HealPlayer:FireServer(v.Name)
+								task.wait(0.01)
+							end
+						end
+					else
+						local HasEquipedMedkitAlready = workspace:FindFirstChild(Players.LocalPlayer.Name)
+
+
+						if HasEquipedMedkitAlready then
+							HasEquipedMedkitAlready = HasEquipedMedkitAlready:GetChildren()
+
+							if HasEquipedMedkitAlready and HasEquipedMedkitAlready.ClassName == 'Tool' and HasEquipedMedkitAlready.Name == 'MedKit' then
+								for i, v in Players:GetPlayers() do
+									HealPlayer:FireServer(v.Name)
+									task.wait(0.01)
+								end
+							else
+								Library:Notify('Missing Tool', 'Please get a MedKit First', 10, Color3.fromRGB(255, 0, 0))
+							end
+						end
+					end
+				end
 			end
 		end)
 	end
@@ -636,6 +705,11 @@ local SetKeyForWindow = CustomizeSection:AddBind('Window Key', Enum.KeyCode.Righ
 end)
 
 
+local args = {
+    [1] = game:GetService("Players").Jk_09linda
+}
+
+game:GetService("ReplicatedStorage").RemoteEvents.HealPlayer:FireServer(unpack(args))
 
 
 
