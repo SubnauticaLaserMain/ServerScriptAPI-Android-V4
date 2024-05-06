@@ -225,7 +225,7 @@ else
 
 
 
-		local function DoEvent(Event)
+		local function DoEvent(Event, ...)
 			if Event == 'Cat' then
 				local args = {
 					[1] = 244,
@@ -235,7 +235,25 @@ else
 
 				Events:WaitForChild('DoDialogue'):FireServer(unpack(args))
 
-				Event:WaitForChild('Cattery'):FireServer()
+				Events:WaitForChild('Cattery'):FireServer()
+			else
+				if Event == 'Pan' then
+					local args = {
+						[1] = 'Pan',
+						[2] = 0
+					}
+
+					RemoteEvents:WaitForChild('BuyItem'):FireServer(unpack(args))
+				else
+					if Event == 'Drown' then
+						local args = {
+							[1] = 1,
+							[2] = Players[({...})[1]]
+						}
+
+						Events:WaitForChild('ToxicDrown'):FireServer(unpack(args))
+					end
+				end
 			end
 		end
 	
@@ -297,12 +315,74 @@ else
 	
 			GiveTool:FireServer(unpack(args))
 		end)
-	
-		
 
+		Break_In_Game_ItemGiver:AddButton('Give Expired_BloxyCola', function()
+			local args = {
+				[1] = 'ExpiredBloxyCola'
+			}
+
+
+			GiveTool:FireServer(unpack(args))
+		end)
+
+		Break_In_Game_ItemGiver:AddButton(' ')
+
+		Break_In_Game_ItemGiver:AddButton('Give Key', function()
+			local args = {
+				[1] = 'Key'
+			}
+
+			GiveTool:FireServer(unpack(args))
+		end)
+
+
+		
 
 		Break_In_Game_Events:AddButton('Best Friend Cat', function()
 			DoEvent('Cat')
+		end)
+
+		Break_In_Game_Events:AddButton('Buy Pie Pan', function()
+			DoEvent('Pan')
+		end)
+
+
+
+		local KillPlayer = Break_In_Game:AddSubSection('KillPlayer')
+
+
+
+		local PlayerSelected = nil
+
+
+
+		local PlayersTable = Players:GetPlayers()
+
+
+		local PlayersToKill = KillPlayer:AddDropdown('Players', PlayersTable, {default = 'nil'}, function(selected)
+			if selected == 'nil' then
+			else
+				PlayerSelected = selected
+			end
+		end)
+
+
+
+		PlayersToKill:Remove(Players.LocalPlayer.Name)
+
+
+		Players.PlayerAdded:Connect(function(plr)
+			PlayersToKill:Add(plr.Name)
+		end)
+
+		Players.PlayerRemoved:Connect(function(plr)
+			PlayersToKill:Remove(plr.Name)
+		end)
+
+
+
+		KillPlayer:AddButton('Kill', function()
+			DoEvent('Drown', PlayerSelected)
 		end)
 	end
 end
