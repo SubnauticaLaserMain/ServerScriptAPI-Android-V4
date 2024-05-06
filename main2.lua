@@ -216,16 +216,28 @@ if game.PlaceId == 3851622790 then
 	Roles2:AddButton('Equip', function()
 		RoleSelected(IsUsingSkin)
 	end)
-
-	print('Break In ')
 else
 	if game.PlaceId == 4620170611 then
-
-		print('Break In 2')
 		local Events = ReplicatedStorage:WaitForChild('RemoteEvents')
 	
 		local GiveTool = Events:WaitForChild('GiveTool')
 	
+
+
+
+		local function DoEvent(Event)
+			if Event == 'Cat' then
+				local args = {
+					[1] = 244,
+					[2] = true
+				}
+
+
+				Events:WaitForChild('DoDialogue'):FireServer(unpack(args))
+
+				Event:WaitForChild('Cattery'):FireServer()
+			end
+		end
 	
 	
 	
@@ -280,13 +292,18 @@ else
 	
 		Break_In_Game_ItemGiver:AddButton('Give Pizza', function()
 			local args = {
-				[1] = 'Pizza'
+				[1] = 'Pizza3'
 			}
 	
 			GiveTool:FireServer(unpack(args))
 		end)
 	
-	
+		
+
+
+		Break_In_Game_Events:AddButton('Best Friend Cat', function()
+			DoEvent('Cat')
+		end)
 	end
 end
 
