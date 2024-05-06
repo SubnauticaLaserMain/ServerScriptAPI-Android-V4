@@ -647,16 +647,28 @@ else
 
 				if Backpack then
 					local hasMedkit = Backpack:GetChildren()
+					local BackpackEna = false
 
 
-					if hasMedkit and hasMedkit.ClassName == 'Tool' and hasMedkit.Name == 'MedKit' then
+					for i, v in Backpack:GetChildren() do
+						if v and v.ClassName == 'Tool' and v.Name == 'MedKit' then
+							BackpackEna = true
+							hasMedkit = v
+							break
+						else
+							continue
+						end
+					end
+
+
+					if BackpackEna then
 						local Humanoid = GetHumanoid()
 
 						if Humanoid then
 							Humanoid:EquipTool(hasMedkit)
 
 							for i, v in Players:GetPlayers() do
-								HealPlayer:FireServer(v.Name)
+								HealPlayerRemote:FireServer(v)
 								task.wait(0.01)
 							end
 						end
@@ -669,15 +681,16 @@ else
 							for i, v in HasEquipedMedkitAlready:GetChildren() do
 								if v and v.ClassName == 'Tool' and v.Name == 'MedKit' then
 									Ena = true
+									break
 								else
 									continue
 								end
 							end
 
-							
+
 							if Ena then
 								for i, v in Players:GetPlayers() do
-									HealPlayer:FireServer(v.Name)
+									HealPlayerRemote:FireServer(v)
 									task.wait(0.01)
 								end
 							else
