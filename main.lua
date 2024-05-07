@@ -38,6 +38,17 @@ local ClientSection = MainTab:AddSection('Client', {default = false})
 
 -- ClientSection - Features
 ClientSection:AddLabel('Platform: '..(UserInputService:GetPlatform().Name))
+local UISSection = ClientSection:AddSubSection('UserInput', {default = false})
+
+
+
+UISSection:AddLabel('Keyboard: '..(UserInputService.KeyboardEnabled))
+UISSection:AddLabel('Mouse: '..(UserInputService.MouseEnabled))
+UISSection:AddLabel('Modal: '..(UserInputService.ModalEnabled))
+UISSection:AddLabel('Touch: '..(UserInputService.TouchEnabled))
+
+
+
 
 
 
@@ -748,45 +759,51 @@ else
 
 
 
+			local Break_In_Lobby = GamesTab:AddSection('Break In 2 - Lobby')
+			local Roles2 = Break_In_Lobby:AddSubSection('Roles', {default = false})
 
 
 
-			local Break_In_Lobby = GamesTab:AddSection('Break In - Lobby')
-				local Roles2 = Break_In_Lobby:AddSubSection('Roles', {default = false})
+			local RoleSelected = function(...) print('Please Select a Role') end
+			local IsUsingSkin = false
 
 
 
-
-
-				local Adults = Roles2:AddDropdown('Adults', {'The Protector', 'The Medic', 'The Officer', 'The Swat'}, {default = 'The Protector'}, function(selected)
-					RoleSelected = Roles['Adults'][selected]['Equip']
-				end)
-				local Kids = Roles2:AddDropdown('Kids', {'The Stealthy', 'The Hungry', 'The Fighter'}, {default = 'The Stealthy'}, function(selected)
-					RoleSelected = Roles['Kids'][selected]['Equip']
-				end)
+			local Adults = Roles2:AddDropdown('Adults', {'The Protector', 'The Medic', 'The Hacker'}, {default = 'The Protector'}, function(selected)
+				RoleSelected = Roles['Adults'][selected]['Equip']
+			end)
+			local Kids = Roles2:AddDropdown('Kids', {'The Hyper', 'The Sporty', 'The Nerd'}, {default = 'The Hyper'}, function(selected)
+				RoleSelected = Roles['Kids'][selected]['Equip']
+			end)
+		
 			
-				
-				local UsingSkin = Roles2:AddToggle('Using Skin', {flag = 'Toggle_Flag', default = false}, function(bool)
-					IsUsingSkin = bool
-				end)
-			
+			local UsingSkin = Roles2:AddToggle('Using Skin', {flag = 'Toggle_Flag', default = false}, function(bool)
+				IsUsingSkin = bool
+			end)
+		
 
 
-				local RoleSelected = function(...) print('Please Select a Role') end
-				local IsUsingSkin = false
+		
+			Roles2:AddButton('Equip', function()
+				RoleSelected(IsUsingSkin)
+			end)
 
 
-			
-				Roles2:AddButton('Equip', function()
-					RoleSelected(IsUsingSkin)
-				end)
-
-
-				print('OK')
+			print('OK')
 
 
 			print('Continue')
 		end
+	elseif game.PlaceId == 13864667823 then
+		local Break_In_Game = GamesTab:AddSection('Break In 2 - In-Game')
+
+
+		local Break_In_Game_ItemGiver = Break_In_Game:AddSubSection('Item Giver')
+		local Break_In_Game_Events = Break_In_Game:AddSubSection('Events')
+		local Break_In_Game_Basement = Break_In_Game:AddSubSection('Basement Events')
+		
+
+
 	end
 end
 
